@@ -1,0 +1,15 @@
+---
+layout: layouts/base.njk
+title: Eleventy Project
+---
+
+<h1>Homepage Test</h1>
+
+{%- for project in collections.projects | reverse -%}
+    <li>
+        <article>
+            <img src="{{ projects.data.image }}" alt= "{{ projects.data.imageAlt }}">
+            <h3>{{ project.data.title }}</h3>
+        </article>
+    </li>
+{%- endfor %}
