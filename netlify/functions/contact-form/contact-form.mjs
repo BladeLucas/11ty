@@ -18,7 +18,7 @@ exports.handler = async (event) => {
     }
 
     // Mailchimp API configuration
-    const apiKey = process.env.MAILCHIMP_API_KEY;
+    const apiKey = '9122419ab5a1774309cdef054f0794c9-us15';
     const serverPrefix = apiKey.split('-')[1]; // Extract the server prefix from the API key
     const audienceId = '16ec49a15f'; // Mailchimp audience ID
 
