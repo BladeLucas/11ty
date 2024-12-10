@@ -5,5 +5,5 @@ semester: 6
 tags: projects
 image: /assets/projects/...
 imageAlt: DM Assistant
-description: [insert description here]
+description: insert description here
 ---

@@ -6,9 +6,9 @@ public_folder: "/assets/projects" # The src attribute for uploaded media will be
 collections:
   - name: "projects"
     label: "Projects"
-    folder: "src//projects"
+    folder: "src/projects"
     create: true
-    slug: {{ slug }}
+    slug: "{{ slug }}"
     fields: 
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Author", name: "author", widget: "string"}

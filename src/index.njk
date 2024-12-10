@@ -1,15 +1,26 @@
 ---
 layout: layouts/base.njk
 title: Eleventy Project
+description: Welcome to the homepage of my INFT3202 Eleventy Project
 ---
-
-<h1>Homepage Test</h1>
+<div class="text-secondary px-4 py-5 text-center">
+    <div class="py-5">
+        <h1 class="display-5 fw-bold text-black">{{title}}</h1>
+        <div class="col-lg-6 mx-auto">
+            <p class="fs-5 mb-4">{{description}}</p>
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <button type="button" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold">Projects</button>
+                <button type="button" class="btn btn-outline-info btn-lg px-4">Contact</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 {%- for project in collections.projects | reverse -%}
-    <li>
-        <article>
+    <ul>
+        <article class="articleCard">
             <img src="{{ projects.data.image }}" alt= "{{ projects.data.imageAlt }}">
             <h3>{{ project.data.title }}</h3>
         </article>
-    </li>
+    </ul>
 {%- endfor %}

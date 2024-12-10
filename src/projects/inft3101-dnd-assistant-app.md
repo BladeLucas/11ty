@@ -5,5 +5,5 @@ semester: 5
 tags: projects
 image: /assets/projects/...
 imageAlt: D&D Assistant App
-description: [insert description here]
+description: insert description here
 ---

@@ -5,5 +5,5 @@ semester: 5
 tags: projects
 image: /assets/projects/...
 imageAlt: Cellibini's Bikes
-description: [insert description here]
+description: insert description here
 ---
