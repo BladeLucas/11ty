@@ -30,53 +30,51 @@ exports.handler = async (event) => {
         };
     }
 
-    // Mailchimp API configuration
-    const apiKey = '9122419ab5a1774309cdef054f0794c9-us15';
-    const serverPrefix = apiKey.split('-')[1]; // Extract server prefix from API key
-    const audienceId = '16ec49a15f'; // Mailchimp audience ID
+    // Use your alias to filter emails (replace with your actual alias)
+    const yourEmailAlias = 'blade.lucas@dcmail.ca';  
+    //const targetEmail = 'adam.kunz+inft@durhamcollege.ca'; // Replace with recipient email
 
-    const url = `https://${serverPrefix}.api.mailchimp.com/3.0/lists/${audienceId}/members/`;
+    const subjectPrefix = "[Automated Message] ";
+    const emailSubject = subjectPrefix + subject;
 
-    const data = {
-        email_address: email,
-        status: 'subscribed',
-        merge_fields: {
-            FNAME: name,
-            PHONE: phone || "",  // Default empty string if phone is not provided
-            SUBJECT: subject,
-            MESSAGE: message,
-        },
+    // Send email to both recipients
+    const sendEmail = async (to, subject, text) => {
+        const emailData = {
+            to: to,
+            subject: subject,
+            text: `From: ${name}\nEmail: ${email}\nPhone: ${phone}\nMessage:\n\n${message}`,
+        };
+
+        try {
+            const response = await fetch('https://your-email-service-api-endpoint.com/send', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer your-email-api-key`,  // Use appropriate authorization header for your service
+                },
+                body: JSON.stringify(emailData),
+            });
+
+            if (!response.ok) {
+                throw new Error('Email sending failed');
+            }
+        } catch (error) {
+            console.error('Error sending email:', error);
+            throw error;
+        }
     };
 
     try {
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `apikey ${apiKey}`,
-            },
-            body: JSON.stringify(data),
-        });
+        // Send the email to both recipients
+        await sendEmail(yourEmailAlias, emailSubject, message);
+        //await sendEmail(targetEmail, emailSubject, message);
 
-        if (response.status === 201) {
-            console.log('Form submitted successfully.');
-            return {
-                statusCode: 200,
-                body: JSON.stringify({ message: "Form submitted successfully." }),
-            };
-        } else {
-            const errorResponse = await response.json();
-            console.error('Mailchimp API error:', errorResponse);
-            return {
-                statusCode: response.status,
-                body: JSON.stringify({
-                    message: errorResponse.detail || "Failed to submit form.",
-                    error: errorResponse,
-                }),
-            };
-        }
+        return {
+            statusCode: 200,
+            body: JSON.stringify({ message: "Form submitted successfully." }),
+        };
     } catch (error) {
-        console.error('Error making request to Mailchimp:', error);
+        console.error('Error during form submission:', error);
         return {
             statusCode: 500,
             body: JSON.stringify({ message: "An internal server error occurred." }),
