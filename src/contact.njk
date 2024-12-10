@@ -64,7 +64,7 @@ description: Check out the Projects I have worked on throughout my itm e at Durh
 
       // Send the form data to the serverless function using fetch
       try {
-        const response = await fetch('/api/contact', {
+        const response = await fetch('/netlify/functions/contact', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
