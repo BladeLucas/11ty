@@ -1,17 +1,6 @@
-import fetch from 'node-fetch';  // Make sure fetch is correctly imported
+const fetch = require('node-fetch');  // Make sure fetch is correctly imported
 
-let fetch;
 exports.handler = async (event) => {
-    try {
-        fetch = await import('node-fetch'); // Dynamically import node-fetch
-    } catch (error) {
-        console.error('Error importing fetch:', error);
-        return {
-            statusCode: 500,
-            body: JSON.stringify({ message: "Error loading fetch" }),
-        };
-    }
-
     if (event.httpMethod !== 'POST') {
         return {
             statusCode: 405,
@@ -28,34 +17,26 @@ exports.handler = async (event) => {
         };
     }
 
-    const apiKey = process.env.MAILCHIMP_API_KEY;
-    const serverPrefix = apiKey.split('-')[1]; // Extract the server prefix
-    const audienceId = process.env.MAILCHIMP_LIST_ID; // Mailchimp audience ID
-
-    if (!apiKey || !audienceId) {
-        console.error("Missing Mailchimp configuration");
-        return {
-            statusCode: 500,
-            body: JSON.stringify({ message: "Mailchimp configuration missing." }),
-        };
-    }
+    // Mailchimp API configuration
+    const apiKey = '9122419ab5a1774309cdef054f0794c9-us15';
+    const serverPrefix = apiKey.split('-')[1]; // Extract the server prefix from the API key
+    const audienceId = '16ec49a15f'; // Mailchimp audience ID
 
     const url = `https://${serverPrefix}.api.mailchimp.com/3.0/lists/${audienceId}/members/`;
+
     const data = {
         email_address: email,
         status: 'subscribed',
         merge_fields: {
             FNAME: name,
-            PHONE: phone || "",
+            PHONE: phone || "",  // Default empty string if phone is not provided
             SUBJECT: subject,
             MESSAGE: message,
         },
     };
 
-    console.log("Sending data to Mailchimp:", data);
-
     try {
-        const response = await fetch(url, {
+        const response = await fetch(url, {  // Make sure `fetch` is used
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -74,11 +55,14 @@ exports.handler = async (event) => {
             console.error("Mailchimp error:", errorResponse);
             return {
                 statusCode: response.status,
-                body: JSON.stringify({ message: errorResponse.detail || "Failed to submit form." }),
+                body: JSON.stringify({
+                    message: errorResponse.detail || "Failed to submit form.",
+                    error: errorResponse,
+                }),
             };
         }
     } catch (error) {
-        console.error("Error occurred while calling Mailchimp:", error);
+        console.error("Error:", error);
         return {
             statusCode: 500,
             body: JSON.stringify({ message: "An internal server error occurred." }),
