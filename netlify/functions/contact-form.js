@@ -1,6 +1,6 @@
-const fetch = require('node-fetch');  // Make sure fetch is correctly imported
+import fetch from 'node-fetch'; // Use the ESM import syntax
 
-exports.handler = async (event) => {
+export async function handler(event) {
     if (event.httpMethod !== 'POST') {
         return {
             statusCode: 405,
@@ -68,4 +68,4 @@ exports.handler = async (event) => {
             body: JSON.stringify({ message: "An internal server error occurred." }),
         };
     }
-};
+}
