@@ -29,7 +29,9 @@ exports.handler = async (event) => {
             body: JSON.stringify({ message: "All fields are required." }),
         };
     }
-
+    const apiKey = '57a37351e0c091cc5fbcd7ced03cafc0-us15';  // Replace with your actual Mailchimp API key
+    const serverPrefix = apiKey.split('-')[1]; // Extract the server prefix from API key
+    const audienceId = '16ec49a15f'; 
     // Use your alias to filter emails (replace with your actual alias)
     const yourEmailAlias = 'blade.lucas@dcmail.ca';  
     //const targetEmail = 'adam.kunz+inft@durhamcollege.ca'; // Replace with recipient email
@@ -46,11 +48,11 @@ exports.handler = async (event) => {
         };
 
         try {
-            const response = await fetch('https://your-email-service-api-endpoint.com/send', {
+            const response = await fetch('https://mandrillapp.com/api/1.0/messages/send.json', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer your-email-api-key`,  // Use appropriate authorization header for your service
+                    'Authorization': `apikey ${apiKey}`,  // Use appropriate authorization header for your service
                 },
                 body: JSON.stringify(emailData),
             });
