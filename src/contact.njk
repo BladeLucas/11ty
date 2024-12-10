@@ -1,0 +1,65 @@
+---
+layout: layouts/base.njk
+title: Contact
+description: Check out the Projects I have worked on throughout my itm e at Durham College.
+---
+
+<div id="contactFormContainer">
+    <form id="contactForm">
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required>
+
+        <label for="email">E-mail Address:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="subject">Subject:</label>
+        <input type="text" id="subject" name="subject" required>
+
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="4" required></textarea>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <div id="spinner" style="display: none;">Loading...</div>
+    <div id="confirmationMessage" style="display: none;">Thanks for reaching out. We'll get back to you soon!</div>
+</div>
+
+<script>
+    document.getElementById("contactForm").addEventListener("submit", async function (e) {
+        e.preventDefault();
+
+        // Show spinner and hide the form
+        document.getElementById("contactForm").style.display = "none";
+        document.getElementById("spinner").style.display = "block";
+
+        // Collect form data
+        const formData = new FormData(e.target);
+        const data = Object.fromEntries(formData.entries());
+
+        try {
+            // Send data to the serverless function
+            const response = await fetch('/.netlify/functions/contact-form', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
+
+            if (response.ok) {
+                // Hide spinner and show confirmation message
+                document.getElementById("spinner").style.display = "none";
+                document.getElementById("confirmationMessage").style.display = "block";
+            } else {
+                throw new Error('Something went wrong.');
+            }
+        } catch (error) {
+            console.error("Error submitting form:", error);
+            alert("An error occurred. Please try again later.");
+        }
+    });
+</script>

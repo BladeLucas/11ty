@@ -1,0 +1,14 @@
+---
+layout: layouts/base.njk
+title: Projects
+description: Check out the Projects I have worked on throughout my itm e at Durham College.
+---
+
+{%- for project in collections.projects | reverse -%}
+    <ul>
+        <article class="articleCard">
+            <img src="{{ project.data.image }}" alt= "{{ project.data.imageAlt }}">
+            <h3>{{ project.data.title }}</h3>
+        </article>
+    </ul>
+{%- endfor %}

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body class="bg">
+    <header>
+    <div class="header">
+        <div>
+            <h1 style="display:inline-block">Blade Lucas's Portfolio</h1>
+            <a class="btn btn-outline-light btn-md" style="float:right; display:inline-block;" href="/admin">Login</a>
+        </div>
+    </div>
+</header>
+    <main>
+        
+<div id="contactFormContainer">
+    <form id="contactForm">
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required>
+
+        <label for="email">E-mail Address:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="subject">Subject:</label>
+        <input type="text" id="subject" name="subject" required>
+
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="4" required></textarea>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <div id="spinner" style="display: none;">Loading...</div>
+    <div id="confirmationMessage" style="display: none;">Thanks for reaching out. We'll get back to you soon!</div>
+</div>
+
+<script>
+    document.getElementById("contactForm").addEventListener("submit", async function (e) {
+        e.preventDefault();
+
+        // Show spinner and hide the form
+        document.getElementById("contactForm").style.display = "none";
+        document.getElementById("spinner").style.display = "block";
+
+        // Collect form data
+        const formData = new FormData(e.target);
+        const data = Object.fromEntries(formData.entries());
+
+        try {
+            // Send data to the serverless function
+            const response = await fetch('/.netlify/functions/contact-form', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
+
+            if (response.ok) {
+                // Hide spinner and show confirmation message
+                document.getElementById("spinner").style.display = "none";
+                document.getElementById("confirmationMessage").style.display = "block";
+            } else {
+                throw new Error('Something went wrong.');
+            }
+        } catch (error) {
+            console.error("Error submitting form:", error);
+            alert("An error occurred. Please try again later.");
+        }
+    });
+</script>
+    </main>
+    <footer class="footer">
+    <div>
+        <a href="/" style="display: inline-block;">Home</a>
+        <p style="display: inline-block;"> | </p>
+        <a href="/projects" style="display: inline-block;">Projects</a>
+        <p style="display: inline-block;"> | </p>
+        <a href="/contact" style="display: inline-block;">Contact Us</a>
+    </div>
+    <p>Blade Lucas &copy; 2024</p>
+</footer>
+
+    <script>
+        if (window.netlifyIdentity) {
+            window.netlifyIdentity.on("init", (user) => {
+            if (!user) {
+                window.netlifyIdentity.on("login", () => {
+                document.location.href = "/admin/";
+                });
+            }
+            });
+        }
+    </script>
+</body>
+</html>
