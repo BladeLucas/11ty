@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+const fetch = require('node-fetch');  // Make sure fetch is correctly imported
 
 exports.handler = async (event) => {
     if (event.httpMethod !== 'POST') {
@@ -18,7 +18,7 @@ exports.handler = async (event) => {
     }
 
     // Mailchimp API configuration
-    const apiKey = '0f48c7a1905f5235c2f58f68921dd22b-us15';
+    const apiKey = process.env.MAILCHIMP_API_KEY;
     const serverPrefix = apiKey.split('-')[1]; // Extract the server prefix from the API key
     const audienceId = '16ec49a15f'; // Mailchimp audience ID
 
@@ -29,14 +29,14 @@ exports.handler = async (event) => {
         status: 'subscribed',
         merge_fields: {
             FNAME: name,
-            PHONE: phone,
+            PHONE: phone || "",  // Default empty string if phone is not provided
             SUBJECT: subject,
             MESSAGE: message,
         },
     };
 
     try {
-        const response = await fetch(url, {
+        const response = await fetch(url, {  // Make sure `fetch` is used
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -45,7 +45,7 @@ exports.handler = async (event) => {
             body: JSON.stringify(data),
         });
 
-        if (response.status === 200 || response.status === 204) {
+        if (response.status === 201) {
             return {
                 statusCode: 200,
                 body: JSON.stringify({ message: "Form submitted successfully." }),
@@ -55,7 +55,10 @@ exports.handler = async (event) => {
             console.error("Mailchimp error:", errorResponse);
             return {
                 statusCode: response.status,
-                body: JSON.stringify({ message: errorResponse.detail || "Failed to submit form." }),
+                body: JSON.stringify({
+                    message: errorResponse.detail || "Failed to submit form.",
+                    error: errorResponse,
+                }),
             };
         }
     } catch (error) {
