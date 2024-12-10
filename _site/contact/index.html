@@ -19,65 +19,88 @@
 </header>
     <main>
         
-<div id="contactFormContainer">
-    <form id="contactForm">
-        <label for="name">Your Name:</label>
-        <input type="text" id="name" name="name" required>
+<form id="contact-form">
+    <label for="name">Your Name:</label>
+    <input type="text" id="name" name="name" required>
+    <br><br>
 
-        <label for="phone">Phone Number:</label>
-        <input type="tel" id="phone" name="phone" required>
+    <label for="phone">Phone Number:</label>
+    <input type="text" id="phone" name="phone">
+    <br><br>
 
-        <label for="email">E-mail Address:</label>
-        <input type="email" id="email" name="email" required>
+    <label for="email">E-mail address:</label>
+    <input type="email" id="email" name="email" required>
+    <br><br>
 
-        <label for="subject">Subject:</label>
-        <input type="text" id="subject" name="subject" required>
+    <label for="subject">Subject:</label>
+    <input type="text" id="subject" name="subject" required>
+    <br><br>
 
-        <label for="message">Message:</label>
-        <textarea id="message" name="message" rows="4" required></textarea>
+    <label for="message">Message:</label>
+    <textarea id="message" name="message" required></textarea>
+    <br><br>
 
-        <button type="submit">Submit</button>
-    </form>
+    <button type="submit">Submit</button>
+  </form>
 
-    <div id="spinner" style="display: none;">Loading...</div>
-    <div id="confirmationMessage" style="display: none;">Thanks for reaching out. We'll get back to you soon!</div>
-</div>
+  <!-- Spinner (will be shown during submission) -->
+  <div id="spinner">
+    <img src="spinner.gif" alt="Loading...">
+  </div>
 
-<script>
-    document.getElementById("contactForm").addEventListener("submit", async function (e) {
-        e.preventDefault();
+  <!-- Success Message -->
+  <div id="success-message" style="display:none;">
+    <p>Thanks for reaching out. We'll get back to you soon!</p>
+  </div>
 
-        // Show spinner and hide the form
-        document.getElementById("contactForm").style.display = "none";
-        document.getElementById("spinner").style.display = "block";
+  <script>
+    // Get references to the form, spinner, and success message
+    const form = document.getElementById('contact-form');
+    const spinner = document.getElementById('spinner');
+    const successMessage = document.getElementById('success-message');
 
-        // Collect form data
-        const formData = new FormData(e.target);
-        const data = Object.fromEntries(formData.entries());
+    // Handle form submission
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault(); // Prevent default form submission
+      
+      // Show the spinner and hide the form
+      spinner.style.display = 'block';
+      form.style.display = 'none';
 
-        try {
-            // Send data to the serverless function
-            const response = await fetch('/.netlify/functions/contact-form', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            });
+      // Collect form data
+      const formData = new FormData(form);
+      const data = {
+        name: formData.get('name'),
+        phone: formData.get('phone'),
+        email: formData.get('email'),
+        subject: formData.get('subject'),
+        message: formData.get('message'),
+      };
 
-            if (response.ok) {
-                // Hide spinner and show confirmation message
-                document.getElementById("spinner").style.display = "none";
-                document.getElementById("confirmationMessage").style.display = "block";
-            } else {
-                throw new Error('Something went wrong.');
-            }
-        } catch (error) {
-            console.error("Error submitting form:", error);
-            alert("An error occurred. Please try again later.");
-        }
+      // Send the form data to the serverless function using fetch
+      try {
+        const response = await fetch('/.netlify/functions/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+
+        // Wait for the response from the serverless function
+        const result = await response.json();
+
+        // Hide the spinner and show the success message
+        spinner.style.display = 'none';
+        successMessage.style.display = 'block';
+      } catch (error) {
+        // Handle error
+        spinner.style.display = 'none';
+        form.style.display = 'block';
+        alert('There was an error submitting the form. Please try again later.');
+      }
     });
-</script>
+  </script>
     </main>
     <footer class="footer">
     <div>
