@@ -9,7 +9,7 @@ exports.handler = async (event) => {
 
     // Construct the email
     const emailData = {
-      to: ['blade.lucas@cdmail.ca'],
+      to: ['blade.lucas@dcmail.ca'],
       //to: ['your-email@domain.com', 'adam.kunz+inft@durhamcollege.ca'],  // Add recipients
       from: 'blade.lucas@dcmail.ca',  // Replace with your email
       subject: `[Auto Contact] ${subject}`,  // Add a prefix to the subject line
