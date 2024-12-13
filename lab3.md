@@ -1,9 +1,5 @@
----
-title: Lab 3
-subtitle: ServerlessFunctions /Mail Service Research
----
-# {{ title }}
-## {{ subtitle }}
+# Lab 3
+## ServerlessFunctions /Mail Service Research
 
 ---
 
