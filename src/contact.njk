@@ -34,7 +34,7 @@ description: Want to get in contact with me? Send me an Email.
   <i class="fa-solid fa-spinner fa-spin-pulse"></i>
 </div>
 
-<div id="success-message" style="display:none;" class="d-flex flex-column justify-content-center align-items-center min-vh-100">
+<div id="success-message" class="d-flex flex-column justify-content-center align-items-center min-vh-100" style="display: none;">
   <h3 class="text-center">
     <i class="fa-solid fa-check"></i> Thanks for reaching out. We'll get back to you soon!
   </h3>
@@ -42,17 +42,18 @@ description: Want to get in contact with me? Send me an Email.
 </div>
 
 <script>
+  window.onload = () => {
+    const successMessage = document.getElementById('success-message');
+    successMessage.style.display = 'none';
+  };
+
   const form = document.getElementById('contact-form');
   const spinner = document.getElementById('spinner');
   const successMessage = document.getElementById('success-message');
 
-  // Ensure success message is hidden when the page loads
-  successMessage.style.display = 'none';
-
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
     
-    // Hide the form and show the spinner while submitting
     spinner.style.display = 'block';
     form.style.display = 'none';
 
@@ -74,7 +75,6 @@ description: Want to get in contact with me? Send me an Email.
         body: JSON.stringify(data),
       });
 
-      // Check if the response status is ok (successful)
       if (response.ok) {
         const result = await response.json();
         spinner.style.display = 'none';
@@ -83,7 +83,6 @@ description: Want to get in contact with me? Send me an Email.
         throw new Error('Failed to submit');
       }
     } catch (error) {
-      // If there was an error, show the form again and hide the spinner
       spinner.style.display = 'none';
       form.style.display = 'block';
       alert('There was an error submitting the form. Please try again later.');

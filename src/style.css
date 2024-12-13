@@ -63,3 +63,6 @@ body {
 .cardBackground{
     background: #ffffff31;
 }
+#success-message {
+    display: none !important;
+  }
