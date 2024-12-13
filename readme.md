@@ -1,7 +1,8 @@
 # Documentation
 ## Eleventy Project
 **Developed by:** Blade Lucas
------
+
+---
 This website is the cumulative efforts of Assignments 1, 2 and 3 of the 
 INFT3201 course. It is developed using 11ty and is connected with a
 headless CMS called DeCap. It has also been connected to a mail service
@@ -12,7 +13,8 @@ source code being available on GitHub.
 I will be providing a detailed breakdown of each page and its operations
 here for future development and troubleshooting purposes. I will also outline
 the functionality of the layout files and the information they contain.
------
+
+---
 
 ## Layout Files
 **Base.njk**
@@ -35,7 +37,8 @@ also be expanded upon in the future.
 The project.njk file is an extension of the base.njk file, nested within
 the content section. It contains the formatting for each of the .md files
 the project information is stored in.
------
+
+---
 
 # SRC Pages
 **index.njk**
@@ -72,7 +75,8 @@ alert will be displayed to the user.
 The about.njk file simple displays a card with some information about me. 
 This file leverages the base.njk layout. All the information about me is
 static.
------
+
+---
 
 # Admin Files
 These are all files contained within the ./src/admin directory and server
@@ -89,7 +93,8 @@ interact with github, as well as the directorys in the project. It also
 contains the format of the front matter for the project .md files stored 
 within the ./src/projects directory, that way the cms has a reference for 
 what fields are required to make a new entry.
------
+
+---
 
 # Serverless Functions
 All files are contained within the ./netlify/functions directory as long 
@@ -104,7 +109,8 @@ proper functionality. The "from" field in the emailData needs to be a
 registered email address on the SendGrid account or the function will not 
 work properly. The API key is stored in the environment variables on 
 Netlify.
------
+
+---
 
 # .eleventy.js  
 The .eleventy.js file is the config for the 11ty project. It is fairly 
@@ -115,7 +121,8 @@ to sort the .md files in ./src/projects directory by the semester from
 newest to oldest. This function is required as the front matter does not 
 specify type, and in order to properly sort the projects, the semester 
 front matter needs to be parsed as an integer.
------
+
+---
 
 # Projects Directory
 All these files are contained within the ./ser/projects directory.
@@ -136,7 +143,8 @@ directory. These can be assigned manually be removing them from the json
 file and adding them manually to each existing file and adding them to 
 the ./src/admin/config.yml file as required fields from the CMS when creating 
 new entries.
------
+
+---
 
 # Additional Information
 **Background image**
