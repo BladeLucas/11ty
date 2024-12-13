@@ -1,18 +1,18 @@
 const sgMail = require('@sendgrid/mail');
 
-sgMail.setApiKey('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');  // Replace with your SendGrid API key
+const SENDGRID_API_KEY = process.env.SENDGRID_KEY;
+sgMail.setApiKey(SENDGRID_API_KEY);
 
 exports.handler = async (event) => {
   try {
-    // Parse incoming JSON request body
     const { name, phone, email, subject, message } = JSON.parse(event.body);
 
     // Construct the email
     const emailData = {
       to: ['bladelucas032@gmail.com'],
       //to: ['your-email@domain.com', 'adam.kunz+inft@durhamcollege.ca'],  // Add recipients
-      from: 'blade.lucas@dcmail.ca',  // Replace with your email
-      subject: `[Auto Contact] ${subject}`,  // Add a prefix to the subject line
+      from: 'blade.lucas@dcmail.ca',
+      subject: `[Auto Contact] ${subject}`,
       html: `
         <h3>New Contact Form Submission</h3>
         <p><strong>Name:</strong> ${name}</p>
