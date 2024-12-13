@@ -1,20 +1,23 @@
 ---
 layout: layouts/base.njk
 title: Projects
-description: Check out the Projects I have worked on throughout my itm e at Durham College.
+description: Check out the Projects I have worked on throughout my time at Durham College.
 ---
 
-{%- for project in collections.projects | reverse -%}
+<div class="project-list">
+  
+  {%- for project in collections.projects -%}
     <ul class="px-4 py-2">
-        <article class="articleCard px-4 py-4 border border-4 border-black rounded">
-            <img src="{{ project.data.image }}" alt= "{{ project.data.imageAlt }}">
-            <h3>{{ project.data.title }}</h3>
-            <div>
-                <h5 style="display: inline-block;">Semester {{project.data.semester}} Project</h5>
-                <h5 style="display: inline-block;">  |  </h5>
-                <h5 style="display: inline-block;">Author: {{project.data.author}}</h5>
-            </div>
-            <a href="{{project.url}}" class="btn btn-outline-light btn-primary btn-md">Open</a>
-        </article>
+      <article class="articleCard px-4 py-4 border border-4 border-black rounded">
+        <img src="{{ project.data.image }}" alt="{{ project.data.imageAlt }}" class="img-fluid rounded">
+        <h3>{{ project.data.title }}</h3>
+        <div>
+          <h5 class="d-inline-block">Semester {{ project.data.semester }} Project</h5>
+          <h5 class="d-inline-block mx-2">|</h5>
+          <h5 class="d-inline-block">Author: {{ project.data.author }}</h5>
+        </div>
+        <a href="{{ project.url }}" class="btn btn-outline-light btn-primary btn-md mt-2">Open</a>
+      </article>
     </ul>
-{%- endfor %}
+  {%- endfor %}
+</div>

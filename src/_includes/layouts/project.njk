@@ -1,0 +1,14 @@
+---
+layout: "layouts/base.njk"
+---
+<div class="px-4 py-4">
+    <div class="border border-dark border-3 rounded pb-4">
+        <article class="px-5">
+            <div class="py-4">
+                <h1 class = "text-center">{{ title }}</h1>
+            </div>
+            {{ content | safe }}
+            <a href="/projects" class="btn btn-primary btn-outline-light">Back to Projects</a>
+        </article>
+    </div>
+</div>

@@ -4,6 +4,13 @@ module.exports = function(eleventyConfig){
     eleventyConfig.addPassthroughCopy('./src/projects');
     eleventyConfig.addPassthroughCopy('./src/contact');
     eleventyConfig.addPassthroughCopy('./src/assets');
+    
+    eleventyConfig.addCollection("projects", function(collectionApi) {
+        return collectionApi.getFilteredByTag("projects").sort((a, b) => {
+            return parseInt(b.data.semester, 10) - parseInt(a.data.semester, 10); // Descending order
+        });
+    });
+
     return {
         dir: {
             input: "src",
