@@ -7,7 +7,6 @@ exports.handler = async (event) => {
   try {
     const { name, phone, email, subject, message } = JSON.parse(event.body);
 
-    // Construct the email
     const emailData = {
       to: ['bladelucas032@gmail.com'],
       //to: ['your-email@domain.com', 'adam.kunz+inft@durhamcollege.ca'],  // Add recipients
@@ -22,7 +21,6 @@ exports.handler = async (event) => {
       `,
     };
 
-    // Send the email via SendGrid
     await sgMail.send(emailData);
 
     return {
