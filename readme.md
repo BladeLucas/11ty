@@ -31,8 +31,8 @@ The footer.njk file contains a simple href link to each page within the
 website (excluding individual project links) and the copyrite. This may
 also be expanded upon in the future.
 
-**project.njk**
-the project.njk file is an extension of the base.njk file, nested within
+**project.njk**  
+The project.njk file is an extension of the base.njk file, nested within
 the content section. It contains the formatting for each of the .md files
 the project information is stored in.
 -----
@@ -68,7 +68,7 @@ an animated font awesome spinner displays. Upon receiving a success or
 failure response from the function, either a success message, or an error 
 alert will be displayed to the user.
 
-**about.njk**
+**about.njk**  
 The about.njk file simple displays a card with some information about me. 
 This file leverages the base.njk layout. All the information about me is
 static.
@@ -83,7 +83,7 @@ This page is copied form the [DeCap](https://decapcms.org/docs/install-decap-cms
 install pages, and is a required document as of the last update to this
 documentation.
 
-**config.yml**
+**config.yml**  
 The config.yml file configures the manner in which the headless CMS will
 interact with github, as well as the directorys in the project. It also 
 contains the format of the front matter for the project .md files stored 
@@ -96,7 +96,7 @@ All files are contained within the ./netlify/functions directory as long
 as the project is hosted on netlify. If the CMS were to be changed, a new 
 folder determined by the new CMS would need to be created.
 
-**contact.js**
+**contact.js**  
 This serverless function handles the sending of emails to myself whenever 
 someone fills out the contact form in the ./src/contact.njk page. It requires 
 the dependnacy @sendgrid/mail, which needs to be kept up to date for 
@@ -106,7 +106,7 @@ work properly. The API key is stored in the environment variables on
 Netlify.
 -----
 
-# .eleventy.js
+# .eleventy.js  
 The .eleventy.js file is the config for the 11ty project. It is fairly 
 simple at the moment, some passthroughs are added to ensure that pages 
 other than the index.njk files are accessable, and as mentioned before, 
@@ -129,7 +129,7 @@ important as that is the sorting variable for the ./ser/projects page, and
 the variable needs to be an integer, so no quotes on this front matter 
 variable.
 
-**projects.json**
+**projects.json**  
 This json file adds the project layout file and the projects tag as a 
 required and automatic variable for each .md file in the ./src/projects 
 directory. These can be assigned manually be removing them from the json 
