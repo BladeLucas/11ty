@@ -4,7 +4,7 @@ title: Eleventy Project
 description: Welcome to the homepage of my INFT3202 Eleventy Project
 ---
 <div class="px-4 py-4">
-    <div class="text-secondary px-4 py-5 text-center border border-3 border-dark rounded">
+    <div class="cardBackground text-secondary px-4 py-5 text-center border border-3 border-dark rounded">
         <div class="py-5">
             <h1 class="display-5 fw-bold text-black">{{title}}</h1>
             <div class="col-lg-6 mx-auto">
@@ -20,17 +20,17 @@ description: Welcome to the homepage of my INFT3202 Eleventy Project
 <div class="px-4 py-2">
   <div class="row row-cols-1 row-cols-md-2 gy-4 py-2">
     <div class="col">
-      <div class="px-4 py-5 border border-3 border-dark rounded h-100">
+      <div class="cardBackground px-4 py-5 border border-3 border-dark rounded h-100">
         <div class="card-body">
           <h5 class="card-title">Most Recent Project</h5>
-          {%- set lastProject = collections.projects | reverse | first -%}
+          {%- set lastProject = collections.projects | first -%}
           <p class="card-text">My most recent project is "{{lastProject.data.title}}"</p>
           <a href="{{lastProject.url}}" class="btn btn-primary btn-outline-light">Open</a>
         </div>
       </div>
     </div>
     <div class="col">
-      <div class="px-4 py-5 border border-3 border-dark rounded h-100">
+      <div class="cardBackground px-4 py-5 border border-3 border-dark rounded h-100">
         <div class="card-body">
           <h5 class="card-title">Contact Me Directly</h5>
           <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
@@ -40,3 +40,10 @@ description: Welcome to the homepage of my INFT3202 Eleventy Project
     </div>
   </div>
 </div>
+<div class="px-4 py-4">
+  <div class="cardBackground px-4 py-5 text-center border border-3 border-dark rounded">
+    <h2>About Me</h2>
+    <h6 class="text-secondary">Blade Lucas | Computer Programming and Analysis Advanced Diploma Graduate</h6>
+    <a href="/about" class="btn btn-primary btn-outline-light">Learn More</a>
+  </div>
+<div>
