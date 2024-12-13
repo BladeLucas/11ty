@@ -45,12 +45,10 @@
   </form>
 </div>
 
-  <!-- Spinner (will be shown during submission) -->
   <div id="spinner">
     <i class="fa-solid fa-spinner fa-spin-pulse"></i>
   </div>
 
-  <!-- Success Message -->
   <div id="success-message" style="display:none;" class="d-flex flex-column justify-content-center align-items-center min-vh-100">
     <h3 class="text-center">
       <i class="fa-solid fa-check"></i> Thanks for reaching out. We'll get back to you soon!
@@ -59,20 +57,16 @@
   </div>
 
   <script>
-    // Get references to the form, spinner, and success message
     const form = document.getElementById('contact-form');
     const spinner = document.getElementById('spinner');
     const successMessage = document.getElementById('success-message');
 
-    // Handle form submission
     form.addEventListener('submit', async (event) => {
-      event.preventDefault(); // Prevent default form submission
+      event.preventDefault();
       
-      // Show the spinner and hide the form
       spinner.style.display = 'block';
       form.style.display = 'none';
 
-      // Collect form data
       const formData = new FormData(form);
       const data = {
         name: formData.get('name'),
@@ -82,7 +76,6 @@
         message: formData.get('message'),
       };
 
-      // Send the form data to the serverless function using fetch
       try {
         const response = await fetch('/.netlify/functions/contact', {
           method: 'POST',
@@ -92,14 +85,11 @@
           body: JSON.stringify(data),
         });
 
-        // Wait for the response from the serverless function
         const result = await response.json();
 
-        // Hide the spinner and show the success message
         spinner.style.display = 'none';
         successMessage.style.display = 'block';
       } catch (error) {
-        // Handle error
         spinner.style.display = 'none';
         form.style.display = 'block';
         alert('There was an error submitting the form. Please try again later.');

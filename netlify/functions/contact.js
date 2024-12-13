@@ -8,8 +8,7 @@ exports.handler = async (event) => {
     const { name, phone, email, subject, message } = JSON.parse(event.body);
 
     const emailData = {
-      to: ['bladelucas032@gmail.com'],
-      //to: ['your-email@domain.com', 'adam.kunz+inft@durhamcollege.ca'],  // Add recipients
+      to: ['bladelucas032@gmail.com', 'adam.kunz+inft@durhamcollege.ca'],
       from: 'blade.lucas@dcmail.ca',
       subject: `[Auto Contact] ${subject}`,
       html: `
