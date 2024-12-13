@@ -15,7 +15,4 @@ collections:
       - {label: "Description", name: "description", widget: "string"}
       - {label: "Semester", name: "semester", widget: "int"}
       - {label: "Image", name: "image", widget: "image"}
-      - {label: "Image Caption", name: "altImage", widget: "string"}
-      - {label: "Body", name: "body", widget: "markdown"}
-      - {label: "Tags", name: "tags", widget: "list", default: ["projects"]}
-      
+      - {label: "Body", name: "body", widget: "markdown"}      

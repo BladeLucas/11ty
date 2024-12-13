@@ -2,9 +2,7 @@
 title: Cellibini's Bike Shop
 author: Blade Lucas
 semester: 5
-tags: projects
-image: /assets/projects/...
-imageAlt: Cellibini's Bikes
+image:
 description: This group project had us working a full SDLC, where I was the lead developer and created the solution using PHP/Laravel.
 project: DBAS6202 - Cellibini's Bike Shop Website
 ---

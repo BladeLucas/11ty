@@ -2,9 +2,7 @@
 title: D&D Battle Simulator
 author: Blade Lucas
 semester: 4
-tags: projects
-image: /assets/projects/...
-imageAlt: D&D Battle Sim
+image: 
 description: This project had us use OOP principles to create a game in C# and .NET.
 project: OOP4100 - D&D Battle Simulator Game
 ---

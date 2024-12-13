@@ -2,9 +2,7 @@
 title: D&D Assistant App
 author: Blade Lucas
 semester: 7
-tags: projects
-image: /assets/projects/...
-imageAlt: D&D Assistant App
+image:
 description: This mobile application was an extension of my Capstone project developed in dart/flutter.
 project: INFT3101 - D&D Assistant Mobile Application
 ---

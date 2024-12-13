@@ -3,8 +3,7 @@ title: Capstone Project
 author: Blade Lucas
 description: This was my capstone project for my final semester of the Computer Programming and Analysis program at Durham College where I developed a utility desktop application for a game using C#, Unity and JSON.
 semester: 6
-image: /assets/projects/...
-tags: projects
+image:
 project: Capstone - D&D Dungeon Master Assistant
 ---
 **Project:** {{project}}  

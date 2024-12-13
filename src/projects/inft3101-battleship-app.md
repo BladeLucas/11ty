@@ -2,9 +2,7 @@
 title: Battleship App
 author: Blade Lucas
 semester: 5
-tags: projects
-image: /assets/projects/...
-imageAlt: Battleship App
+image:
 description: In this project I created a Battleship game app in dart/flutter.
 project: INFT3101 - Battleship Mobile Application
 ---
