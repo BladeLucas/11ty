@@ -17,18 +17,18 @@ the functionality of the layout files and the information they contain.
 ---
 
 ## Layout Files
-**Base.njk**
+**Base.njk**  
 The base.njk file contains the base layout for all the pages in the website.
 It contains the CDN's for Bootstrap, Netlify and Font Awesome, as well as
 the link to the CSS file. The layouts for the header and footer are also called 
 within this file. The logic for the login button is also contained within the base
 layout.
 
-**header.njk**
+**header.njk**  
 The header.njk file is simply a file to contain the websites banner at the
 moment, but may be expanded upon later.
 
-**footer.njk**
+**footer.njk**  
 The footer.njk file contains a simple href link to each page within the
 website (excluding individual project links) and the copyrite. This may
 also be expanded upon in the future.
@@ -41,7 +41,7 @@ the project information is stored in.
 ---
 
 # SRC Pages
-**index.njk**
+**index.njk**  
 The index.njk serves as a landing site for users arriving on the website.
 It leverages the base.njk layout file to display its content and displays
 several cards with some basic information, and a redirect button to the
@@ -50,7 +50,7 @@ cards may be added. In the top card, the "Projects" and "Contact" buttons
 are features (hard coded), this can be changed to be dynamic or more hard
 coded buttons may be added.
 
-**projects.njk**
+**projects.njk**  
 The projects.njk file is the page where all of the projects I have worked
 on are displayed. The project information is stored in individual .md 
 files in the ./src/projects directory.This page also leverages the base.njk layout. 
@@ -60,7 +60,7 @@ on mobile devices. The projects are sorted form newest to oldest by looking at t
 "semester" front matter of the individual projects and ordering them in the .eleventy.js 
 file in order to make sure the int type is parsed properly.
 
-**contact.njk**
+**contact.njk**  
 The contact.njk file contains a form which when filled out and sent will
 send me an email using SendGrid. This file leverages the base.njk layout.
 When the submit button is pressed, the javascript will execute the 
@@ -82,7 +82,7 @@ static.
 These are all files contained within the ./src/admin directory and server
 as connection points with the DeCap CMS.
 
-**index.html**
+**index.html**  
 This page is copied form the [DeCap](https://decapcms.org/docs/install-decap-cms/) 
 install pages, and is a required document as of the last update to this
 documentation.
@@ -112,7 +112,7 @@ Netlify.
 
 ---
 
-# .eleventy.js  
+# .eleventy.js
 The .eleventy.js file is the config for the 11ty project. It is fairly 
 simple at the moment, some passthroughs are added to ensure that pages 
 other than the index.njk files are accessable, and as mentioned before, 
@@ -127,7 +127,7 @@ front matter needs to be parsed as an integer.
 # Projects Directory
 All these files are contained within the ./ser/projects directory.
 
-**project-name.md**
+**project-name.md**  
 The .md files in this directory represent my projects that I have worked 
 on. The front matter in these documents is important as the project.njk 
 layout requires many of these, and the contact.js serverless function 
@@ -147,16 +147,16 @@ new entries.
 ---
 
 # Additional Information
-**Background image**
+**Background image**  
 The background image is stored within the ./src/assets directory under the 
 name background.jpg. Changing this image will change the background. The image 
 is assigned in the ./src/style.css file.
 
-**Netlify**
+**Netlify**  
 This project is hosted via Netlify, drawing from a private github directory. 
 There are envirenment variables stored there that the website does use.
 
-**Mobile Friendly**
+**Mobile Friendly**  
 I have done my best to make sure that every page is responsive to screen 
 size, and should be completely mobile friendly. If not, use the contact page 
 to let me know the issues.
