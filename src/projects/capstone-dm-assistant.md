@@ -8,3 +8,8 @@ image: /assets/projects/...
 tags: projects
 imageAlt: DM Assistant
 ---
+Project: {{title}}
+
+Completed: Semester {{semester}} by {{author}}
+
+Description: {{description}}

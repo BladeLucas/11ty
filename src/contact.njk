@@ -1,10 +1,37 @@
 ---
 layout: layouts/base.njk
 title: Contact
-description: Check out the Projects I have worked on throughout my itm e at Durham College.
+description: Want to get in contact with me? Send me an Email.
 ---
+<div class="px-5 py-5">
+  <form class="p-5 border rounded border-3 border-dark">
+    <h1 class="text-center text-white">Contact Form</h1>
+    <div class="mb-3">
+        <label for="name" class="form-label">Your Name:</label>
+        <input type="text" id="name" name="name" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label for="phone" class="form-label">Phone Number:</label>
+        <input type="text" id="phone" name="phone" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label for="email" class="form-label">E-mail Address:</label>
+        <input type="email" id="email" name="email" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label for="subject" class="form-label">Subject:</label>
+        <input type="text" id="subject" name="subject" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label for="message" class="form-label">Message:</label>
+        <textarea id="message" name="message" class="form-control" rows="5" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
 
-<form id="contact-form">
+
+<!--<form id="contact-form">
     <label for="name">Your Name:</label>
     <input type="text" id="name" name="name" required>
     <br><br>
@@ -26,7 +53,7 @@ description: Check out the Projects I have worked on throughout my itm e at Durh
     <br><br>
 
     <button type="submit">Submit</button>
-  </form>
+  </form>-->
 
   <!-- Spinner (will be shown during submission) -->
   <div id="spinner">

@@ -5,10 +5,16 @@ description: Check out the Projects I have worked on throughout my itm e at Durh
 ---
 
 {%- for project in collections.projects | reverse -%}
-    <ul>
-        <article class="articleCard">
+    <ul class="px-4 py-2">
+        <article class="articleCard px-4 py-4 border border-4 border-black rounded">
             <img src="{{ project.data.image }}" alt= "{{ project.data.imageAlt }}">
             <h3>{{ project.data.title }}</h3>
+            <div>
+                <h5 style="display: inline-block;">Semester {{project.data.semester}} Project</h5>
+                <h5 style="display: inline-block;">  |  </h5>
+                <h5 style="display: inline-block;">Author: {{project.data.author}}</h5>
+            </div>
+            <a href="{{project.url}}" class="btn btn-outline-light btn-primary btn-md">Open</a>
         </article>
     </ul>
 {%- endfor %}

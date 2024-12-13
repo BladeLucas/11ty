@@ -1,5 +1,5 @@
 .bg{
-    background-image: linear-gradient(to bottom right, rgb(226, 226, 211), rgb(133, 121, 121));
+    background-image: linear-gradient(to right, rgba(184, 178, 170, 0.6), rgba(255, 235, 205, .6)), url(./assets/background.jpg);
 }
 .articleCard{
     border-style: solid;
@@ -7,14 +7,14 @@
 .header {
     padding: 20px;
     text-align: center;
-    background: #cbce0d7c;
+    background: #4848427c;
     color: white;
     font-size: 30px;
 }
 .footer{
     padding: 10px;
     text-align: center;
-    background: #cbce0d7c;
+    background: #4848427c;
     color: white;
     font-size: 14px;
 }

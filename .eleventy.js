@@ -3,6 +3,7 @@ module.exports = function(eleventyConfig){
     eleventyConfig.addPassthroughCopy('./src/admin');
     eleventyConfig.addPassthroughCopy('./src/projects');
     eleventyConfig.addPassthroughCopy('./src/contact');
+    eleventyConfig.addPassthroughCopy('./src/assets');
     return {
         dir: {
             input: "src",
